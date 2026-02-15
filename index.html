@@ -427,7 +427,7 @@
     <div class="container">
         <div class="header">
             <div class="school-icon">📚</div>
-            <h1>Shelke Classes</h1>
+            <h1>Dehare English Medium School</h1>
             <p class="subtitle">Student Registration • Grades 1-4 • Academic Year 2026</p>
         </div>
         
@@ -513,7 +513,7 @@
                         <label>Your Email Address <span class="required">*</span></label>
                         <input type="email" name="email" required placeholder="parent@example.com">
                         <div class="email-notice">
-                            <strong>📧 Important:</strong> Your email application (Gmail, Outlook, etc.) will open with the registration details. You'll need to click "Send" to submit your registration to Shelke Classes admin. Make sure you have an email app configured on your device.
+                            <strong>📧 Important:</strong> Your email application (Gmail, Outlook, etc.) will open with the registration details. You'll need to click "Send" to submit your registration to Dehare English Medium School admin. Make sure you have an email app configured on your device.
                         </div>
                     </div>
                     
@@ -655,9 +655,9 @@
             </form>
             
             <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #E1E8ED; color: #7F8C8D; font-size: 14px;">
-                <p style="margin: 5px 0;"><strong>Shelke Classes</strong> - Excellence in Education</p>
+                <p style="margin: 5px 0;"><strong>Dehare English Medium School</strong> - Excellence in Education</p>
                 <p style="margin: 5px 0;">📧 Your email app will open when you click Submit</p>
-                <p style="margin: 5px 0; font-size: 12px;">© 2026 Shelke Classes. All rights reserved.</p>
+                <p style="margin: 5px 0; font-size: 12px;">© 2026 Dehare English Medium School. All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -958,9 +958,9 @@
             
             // Create email body
             const emailBody = `
-═══════════════════════════════════════
-    SHELKE CLASSES - NEW REGISTRATION
-═══════════════════════════════════════
+═══════════════════════════════════════════════
+DEHARE ENGLISH MEDIUM SCHOOL - NEW REGISTRATION
+═══════════════════════════════════════════════
 
 📚 STUDENT INFORMATION:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1009,16 +1009,15 @@ Registration ID: ${registrationId}
 
 ⏰ Submission Date & Time: ${timestamp}
 
-═══════════════════════════════════════
-This registration was submitted through
-the Shelke Classes online registration
-system.
-═══════════════════════════════════════
+═══════════════════════════════════════════════════
+This registration was submitted through the dehare 
+english medium school online registration system.
+═══════════════════════════════════════════════════
             `.trim();
             
             // Create mailto link
             const adminEmail = 'shelketejas266.ts@gmail.com';
-            const subject = encodeURIComponent(`New Student Registration - ${data.studentName} - Shelke Classes`);
+            const subject = encodeURIComponent(`New Student Registration - ${data.studentName} - Dehare English Medium School`);
             const body = encodeURIComponent(emailBody);
             
             // Open email client
@@ -1056,7 +1055,7 @@ system.
         }
         
         function showFinalInstructions(studentName) {
-            alert(`✅ Registration Complete!\n\n📧 Your email app should be open with the registration details.\n\n📎 Next Steps:\n1. Click "Send" in your email app\n2. Attach the downloaded photo and signature files to the email\n3. Send the email to complete registration\n\nThank you for registering with Shelke Classes!`);
+            alert(`✅ Registration Complete!\n\n📧 Your email app should be open with the registration details.\n\n📎 Next Steps:\n1. Click "Send" in your email app\n2. Attach the downloaded photo and signature files to the email\n3. Send the email to complete registration\n\nThank you for registering with Dehare English Medium School!`);
         }
         
         // Form validation for phone numbers
