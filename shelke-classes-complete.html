@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelke Classes - Student Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D5F9F;
+            --secondary: #F39C12;
+            --accent: #27AE60;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --success: #27AE60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #2D5F9F 0%, #1A4D7A 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Floating shapes background */
+        .shape {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+            z-index: 0;
+        }
+        
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .shape2 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+            top: 60%;
+            right: -50px;
+            animation-delay: 5s;
+        }
+        
+        .shape3 {
+            width: 150px;
+            height: 150px;
+            background: var(--secondary);
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 30px 30px 0 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+        
+        .school-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 42px;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #7F8C8D;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 50px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .info-notice {
+            background: linear-gradient(135deg, #27AE60 0%, #229954 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .info-notice h3 {
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .info-notice p {
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 24px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            animation: slideIn 0.5s ease-out backwards;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(243, 156, 18, 0.6);
+                transform: scale(1.05);
+            }
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .required {
+            color: var(--primary);
+            margin-left: 3px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #E1E8ED;
+            border-radius: 15px;
+            font-size: 16px;
+            font-family: 'Nunito', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--light);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #1A4D7A 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            box-shadow: 0 10px 30px rgba(45, 95, 159, 0.3);
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(45, 95, 159, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .email-notice {
+            background: #FFF9E6;
+            border: 2px solid #F39C12;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #856404;
+            line-height: 1.5;
+        }
+        
+        .email-notice strong {
+            color: #F39C12;
+        }
+        
+        .photo-capture-container {
+            border: 2px dashed #E1E8ED;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            background: var(--light);
+        }
+        
+        .photo-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .capture-btn, .upload-btn, .retake-btn, .clear-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, #E67E22 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+        
+        .capture-btn:hover, .upload-btn:hover, .retake-btn:hover, .clear-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+        }
+        
+        .clear-btn {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .clear-btn:hover {
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .signature-container {
+            border: 2px solid #E1E8ED;
+            border-radius: 15px;
+            padding: 15px;
+            background: white;
+            text-align: center;
+        }
+        
+        #signatureCanvas {
+            border: 2px dashed #BDC3C7;
+            border-radius: 10px;
+            cursor: crosshair;
+            touch-action: none;
+            max-width: 100%;
+            height: auto;
+            background: white;
+        }
+        
+        .signature-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .declaration-box {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3CD 100%);
+            border: 3px solid var(--secondary);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #E1E8ED;
+        }
+        
+        .checkbox-container:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .submit-btn {
+                padding: 16px 40px;
+                font-size: 18px;
+            }
+            
+            #signatureCanvas {
+                width: 100%;
+                height: 150px;
+            }
+            
+            .photo-buttons, .signature-buttons {
+                flex-direction: column;
+            }
+            
+            .capture-btn, .upload-btn, .retake-btn, .clear-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="school-icon">📚</div>
+            <h1>Shelke Classes</h1>
+            <p class="subtitle">Student Registration • Grades 1-4 • Academic Year 2026</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="info-notice">
+                <h3>✅ How Registration Works</h3>
+                <p>Fill the form below, upload student photo & signature, confirm declaration, and submit. Your email application will open with all the details pre-filled. Just click "Send" to complete your registration!</p>
+            </div>
+            
+            <form id="registrationForm">
+                <!-- Student Information -->
+                <div class="form-section">
+                    <h2 class="section-title">👦 Student Information</h2>
+                    
+                    <div class="form-group">
+                        <label>Student Full Name <span class="required">*</span></label>
+                        <input type="text" name="studentName" required placeholder="Enter student's full name">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date of Birth <span class="required">*</span></label>
+                            <input type="date" name="dob" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Grade/Standard <span class="required">*</span></label>
+                            <select name="grade" required>
+                                <option value="">Select Grade</option>
+                                <option value="1st Standard">1st Standard</option>
+                                <option value="2nd Standard">2nd Standard</option>
+                                <option value="3rd Standard">3rd Standard</option>
+                                <option value="4th Standard">4th Standard</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Gender <span class="required">*</span></label>
+                            <select name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Blood Group</label>
+                            <input type="text" name="bloodGroup" placeholder="e.g., O+, A+, B+">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Parent/Guardian Information -->
+                <div class="form-section">
+                    <h2 class="section-title">👨‍👩‍👧 Parent/Guardian Information</h2>
+                    
+                    <div class="form-group">
+                        <label>Parent/Guardian Name <span class="required">*</span></label>
+                        <input type="text" name="parentName" required placeholder="Enter parent/guardian full name">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Relationship <span class="required">*</span></label>
+                            <select name="relationship" required>
+                                <option value="">Select Relationship</option>
+                                <option value="Father">Father</option>
+                                <option value="Mother">Mother</option>
+                                <option value="Guardian">Guardian</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Contact Number <span class="required">*</span></label>
+                            <input type="tel" name="phone" required placeholder="Enter 10-digit phone number" pattern="[0-9]{10}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Your Email Address <span class="required">*</span></label>
+                        <input type="email" name="email" required placeholder="parent@example.com">
+                        <div class="email-notice">
+                            <strong>📧 Important:</strong> Your email application (Gmail, Outlook, etc.) will open with the registration details. You'll need to click "Send" to submit your registration to Shelke Classes admin. Make sure you have an email app configured on your device.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Alternate Contact Number</label>
+                        <input type="tel" name="alternatePhone" placeholder="Optional alternate number" pattern="[0-9]{10}">
+                    </div>
+                </div>
+                
+                <!-- Address Information -->
+                <div class="form-section">
+                    <h2 class="section-title">🏠 Address Information</h2>
+                    
+                    <div class="form-group">
+                        <label>Full Address <span class="required">*</span></label>
+                        <textarea name="address" required placeholder="Enter complete residential address"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City <span class="required">*</span></label>
+                            <input type="text" name="city" required placeholder="Enter city">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>State <span class="required">*</span></label>
+                            <input type="text" name="state" required placeholder="Enter state">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>PIN Code <span class="required">*</span></label>
+                            <input type="text" name="pincode" required placeholder="Enter PIN code" pattern="[0-9]{6}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Country <span class="required">*</span></label>
+                            <input type="text" name="country" required placeholder="Enter country">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h2 class="section-title">📝 Additional Information</h2>
+                    
+                    <div class="form-group">
+                        <label>Previous School (if any)</label>
+                        <input type="text" name="previousSchool" placeholder="Name of previous school">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Any Medical Conditions or Allergies</label>
+                        <textarea name="medicalInfo" placeholder="Please mention any medical conditions, allergies, or special needs"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Additional Comments</label>
+                        <textarea name="comments" placeholder="Any additional information you'd like to share"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Photo & Signature Section -->
+                <div class="form-section">
+                    <h2 class="section-title">📸 Photo & Signature</h2>
+                    
+                    <div class="form-group">
+                        <label>Student Photo (Selfie) <span class="required">*</span></label>
+                        <div class="photo-capture-container">
+                            <div class="photo-buttons">
+                                <button type="button" class="capture-btn" id="captureBtn">
+                                    📷 Take Selfie
+                                </button>
+                                <button type="button" class="upload-btn" id="uploadPhotoBtn">
+                                    📁 Upload Photo
+                                </button>
+                                <input type="file" id="photoFileInput" accept="image/*" style="display: none;">
+                            </div>
+                            
+                            <video id="video" autoplay style="display: none; width: 100%; max-width: 400px; border-radius: 10px; margin-top: 15px;"></video>
+                            <canvas id="photoCanvas" style="display: none;"></canvas>
+                            
+                            <div id="photoPreview" style="display: none; margin-top: 15px;">
+                                <img id="photoImage" style="max-width: 100%; max-height: 300px; border-radius: 10px; border: 3px solid var(--secondary);">
+                                <br>
+                                <button type="button" class="retake-btn" id="retakePhotoBtn" style="margin-top: 10px;">
+                                    🔄 Retake Photo
+                                </button>
+                            </div>
+                        </div>
+                        <p style="font-size: 13px; color: #7F8C8D; margin-top: 8px; line-height: 1.6;">
+                            📌 <strong>Take a clear selfie or upload a passport-size photo of the student.</strong><br>
+                            💡 <strong>Tip:</strong> If camera doesn't work, click "Upload Photo" to select from your device.
+                        </p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Parent/Guardian Signature <span class="required">*</span></label>
+                        <div class="signature-container">
+                            <canvas id="signatureCanvas" width="600" height="200"></canvas>
+                            <div class="signature-buttons">
+                                <button type="button" class="clear-btn" id="clearSignatureBtn">
+                                    🗑️ Clear
+                                </button>
+                                <button type="button" class="upload-btn" id="uploadSignatureBtn">
+                                    📁 Upload Signature
+                                </button>
+                                <input type="file" id="signatureFileInput" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                        <p style="font-size: 13px; color: #7F8C8D; margin-top: 8px;">
+                            ✍️ Draw your signature above using mouse/finger, or upload a signature image.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Declaration/Authentication Section -->
+                <div class="form-section">
+                    <div class="declaration-box">
+                        <h3 style="color: var(--dark); font-family: 'Fredoka', sans-serif; margin-bottom: 15px; font-size: 20px;">
+                            📋 Declaration
+                        </h3>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="declaration" name="declaration" required style="width: auto; margin-right: 10px; transform: scale(1.5); cursor: pointer;">
+                            <label for="declaration" style="margin: 0; cursor: pointer; line-height: 1.6; font-size: 15px;">
+                                I hereby declare that all the information provided above is true, accurate, and complete to the best of my knowledge. I understand that any false information may result in the cancellation of admission. I also confirm that the photo and signature provided are authentic.
+                            </label>
+                        </div>
+                        <p style="font-size: 13px; color: #7F8C8D; margin-top: 15px; font-style: italic;">
+                            ⚠️ By checking this box and submitting this form, you are electronically signing this declaration.
+                        </p>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    📧 Open Email to Submit
+                </button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #E1E8ED; color: #7F8C8D; font-size: 14px;">
+                <p style="margin: 5px 0;"><strong>Shelke Classes</strong> - Excellence in Education</p>
+                <p style="margin: 5px 0;">📧 Your email app will open when you click Submit</p>
+                <p style="margin: 5px 0; font-size: 12px;">© 2026 Shelke Classes. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('registrationForm');
+        
+        // Photo capture variables
+        let photoDataURL = null;
+        let stream = null;
+        const video = document.getElementById('video');
+        const photoCanvas = document.getElementById('photoCanvas');
+        const photoPreview = document.getElementById('photoPreview');
+        const photoImage = document.getElementById('photoImage');
+        const captureBtn = document.getElementById('captureBtn');
+        const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+        const photoFileInput = document.getElementById('photoFileInput');
+        const retakePhotoBtn = document.getElementById('retakePhotoBtn');
+        
+        // Signature canvas variables
+        let signatureDataURL = null;
+        const signatureCanvas = document.getElementById('signatureCanvas');
+        const signatureCtx = signatureCanvas.getContext('2d');
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        
+        // Initialize signature canvas
+        signatureCtx.strokeStyle = '#000000';
+        signatureCtx.lineWidth = 2;
+        signatureCtx.lineCap = 'round';
+        signatureCtx.lineJoin = 'round';
+        
+        // Draw placeholder text on signature canvas
+        function drawSignaturePlaceholder() {
+            signatureCtx.fillStyle = '#BDC3C7';
+            signatureCtx.font = '18px Nunito';
+            signatureCtx.textAlign = 'center';
+            signatureCtx.fillText('Sign here with mouse or finger', signatureCanvas.width / 2, signatureCanvas.height / 2);
+        }
+        drawSignaturePlaceholder();
+        
+        // Photo Capture Functions
+        captureBtn.addEventListener('click', async () => {
+            try {
+                // Request camera access with specific constraints
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: 'user',
+                        width: { ideal: 640 },
+                        height: { ideal: 480 }
+                    }, 
+                    audio: false 
+                });
+                video.srcObject = stream;
+                video.style.display = 'block';
+                captureBtn.textContent = '📸 Capture Photo';
+                captureBtn.onclick = capturePhoto;
+            } catch (err) {
+                console.error('Camera error:', err);
+                
+                // Detailed error handling
+                let errorMessage = '';
+                
+                if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+                    errorMessage = '📷 Camera Access Denied\n\n' +
+                                 'Please allow camera access to take a selfie.\n\n' +
+                                 'How to fix:\n' +
+                                 '1. Click the camera icon 🎥 in your browser address bar\n' +
+                                 '2. Allow camera access for this site\n' +
+                                 '3. Refresh the page and try again\n\n' +
+                                 'OR\n\n' +
+                                 'Click "Upload Photo" to select a photo from your device instead.';
+                } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+                    errorMessage = '📷 No Camera Found\n\n' +
+                                 'Your device doesn\'t have a camera or it\'s not detected.\n\n' +
+                                 'Please click "Upload Photo" to select a photo from your device.';
+                } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+                    errorMessage = '📷 Camera is Busy\n\n' +
+                                 'Your camera is being used by another application.\n\n' +
+                                 'Please:\n' +
+                                 '1. Close other apps using the camera\n' +
+                                 '2. Try again\n\n' +
+                                 'OR\n\n' +
+                                 'Click "Upload Photo" instead.';
+                } else {
+                    errorMessage = '📷 Camera Error\n\n' +
+                                 'Unable to access camera.\n\n' +
+                                 'Please click "Upload Photo" to select a photo from your device.';
+                }
+                
+                alert(errorMessage);
+                
+                // Automatically highlight the upload button
+                uploadPhotoBtn.style.animation = 'pulse 1s ease-in-out 3';
+                uploadPhotoBtn.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    uploadPhotoBtn.style.transform = 'scale(1)';
+                }, 3000);
+            }
+        });
+        
+        function capturePhoto() {
+            photoCanvas.width = video.videoWidth;
+            photoCanvas.height = video.videoHeight;
+            const ctx = photoCanvas.getContext('2d');
+            ctx.drawImage(video, 0, 0);
+            
+            photoDataURL = photoCanvas.toDataURL('image/jpeg', 0.8);
+            photoImage.src = photoDataURL;
+            
+            // Stop camera
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            
+            video.style.display = 'none';
+            photoPreview.style.display = 'block';
+            captureBtn.textContent = '📷 Take Selfie';
+            captureBtn.onclick = () => captureBtn.click();
+        }
+        
+        uploadPhotoBtn.addEventListener('click', () => {
+            photoFileInput.click();
+        });
+        
+        photoFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    photoDataURL = event.target.result;
+                    photoImage.src = photoDataURL;
+                    photoPreview.style.display = 'block';
+                    video.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        retakePhotoBtn.addEventListener('click', () => {
+            photoPreview.style.display = 'none';
+            photoDataURL = null;
+            captureBtn.textContent = '📷 Take Selfie';
+        });
+        
+        // Signature Drawing Functions
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = signatureCanvas.getBoundingClientRect();
+            const scaleX = signatureCanvas.width / rect.width;
+            const scaleY = signatureCanvas.height / rect.height;
+            
+            if (e.type === 'mousedown') {
+                lastX = (e.clientX - rect.left) * scaleX;
+                lastY = (e.clientY - rect.top) * scaleY;
+            } else if (e.type === 'touchstart') {
+                lastX = (e.touches[0].clientX - rect.left) * scaleX;
+                lastY = (e.touches[0].clientY - rect.top) * scaleY;
+            }
+            
+            // Clear placeholder on first draw
+            if (signatureCtx.fillStyle === '#BDC3C7' || signatureCtx.fillStyle === 'rgb(189, 195, 199)') {
+                signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+            }
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            
+            const rect = signatureCanvas.getBoundingClientRect();
+            const scaleX = signatureCanvas.width / rect.width;
+            const scaleY = signatureCanvas.height / rect.height;
+            
+            let currentX, currentY;
+            if (e.type === 'mousemove') {
+                currentX = (e.clientX - rect.left) * scaleX;
+                currentY = (e.clientY - rect.top) * scaleY;
+            } else if (e.type === 'touchmove') {
+                currentX = (e.touches[0].clientX - rect.left) * scaleX;
+                currentY = (e.touches[0].clientY - rect.top) * scaleY;
+            }
+            
+            signatureCtx.beginPath();
+            signatureCtx.moveTo(lastX, lastY);
+            signatureCtx.lineTo(currentX, currentY);
+            signatureCtx.stroke();
+            
+            lastX = currentX;
+            lastY = currentY;
+        }
+        
+        function stopDrawing() {
+            if (isDrawing) {
+                isDrawing = false;
+                signatureDataURL = signatureCanvas.toDataURL('image/png');
+            }
+        }
+        
+        // Mouse events
+        signatureCanvas.addEventListener('mousedown', startDrawing);
+        signatureCanvas.addEventListener('mousemove', draw);
+        signatureCanvas.addEventListener('mouseup', stopDrawing);
+        signatureCanvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch events
+        signatureCanvas.addEventListener('touchstart', startDrawing);
+        signatureCanvas.addEventListener('touchmove', draw);
+        signatureCanvas.addEventListener('touchend', stopDrawing);
+        
+        // Clear signature
+        document.getElementById('clearSignatureBtn').addEventListener('click', () => {
+            signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+            drawSignaturePlaceholder();
+            signatureDataURL = null;
+        });
+        
+        // Upload signature
+        document.getElementById('uploadSignatureBtn').addEventListener('click', () => {
+            document.getElementById('signatureFileInput').click();
+        });
+        
+        document.getElementById('signatureFileInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+                        signatureCtx.drawImage(img, 0, 0, signatureCanvas.width, signatureCanvas.height);
+                        signatureDataURL = signatureCanvas.toDataURL('image/png');
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate photo
+            if (!photoDataURL) {
+                alert('❌ Please take a selfie or upload a student photo!');
+                document.querySelector('.photo-capture-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            // Validate signature
+            if (!signatureDataURL) {
+                alert('❌ Please provide your signature!');
+                document.querySelector('.signature-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            // Validate declaration checkbox
+            const declarationCheckbox = document.getElementById('declaration');
+            if (!declarationCheckbox.checked) {
+                alert('❌ Please check the declaration box to confirm that all information provided is true and accurate.');
+                declarationCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                declarationCheckbox.focus();
+                // Add attention animation to checkbox
+                const checkboxContainer = document.querySelector('.checkbox-container');
+                checkboxContainer.style.animation = 'pulse 0.5s ease-in-out 3';
+                setTimeout(() => {
+                    checkboxContainer.style.animation = '';
+                }, 1500);
+                return;
+            }
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {};
+            
+            formData.forEach((value, key) => {
+                data[key] = value || 'N/A';
+            });
+            
+            // Add timestamp
+            const now = new Date();
+            const timestamp = now.toLocaleString('en-IN', { 
+                timeZone: 'Asia/Kolkata',
+                dateStyle: 'full',
+                timeStyle: 'long'
+            });
+            
+            // Save images to localStorage for download
+            const registrationId = 'reg_' + Date.now();
+            localStorage.setItem(registrationId + '_photo', photoDataURL);
+            localStorage.setItem(registrationId + '_signature', signatureDataURL);
+            localStorage.setItem(registrationId + '_data', JSON.stringify(data));
+            
+            // Create download links
+            const downloadPageURL = window.location.href.split('?')[0] + '?download=' + registrationId;
+            
+            // Create email body
+            const emailBody = `
+═══════════════════════════════════════
+    SHELKE CLASSES - NEW REGISTRATION
+═══════════════════════════════════════
+
+📚 STUDENT INFORMATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Student Name: ${data.studentName}
+• Date of Birth: ${data.dob}
+• Grade/Standard: ${data.grade}
+• Gender: ${data.gender}
+• Blood Group: ${data.bloodGroup}
+
+👨‍👩‍👧 PARENT/GUARDIAN INFORMATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Parent/Guardian Name: ${data.parentName}
+• Relationship: ${data.relationship}
+• Primary Contact: ${data.phone}
+• Email Address: ${data.email}
+• Alternate Contact: ${data.alternatePhone}
+
+🏠 ADDRESS DETAILS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${data.address}
+City: ${data.city}, ${data.state}
+PIN Code: ${data.pincode}
+Country: ${data.country}
+
+📋 ADDITIONAL INFORMATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Previous School: ${data.previousSchool}
+• Medical Conditions/Allergies: ${data.medicalInfo}
+• Additional Comments: ${data.comments}
+
+📸 PHOTO & SIGNATURE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Student Photo: Captured
+✅ Parent Signature: Provided
+
+⚠️ IMPORTANT: To download photo and signature files:
+1. Reply to this email asking for the files
+2. Or contact the parent at: ${data.email} / ${data.phone}
+
+📋 DECLARATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Parent has confirmed that all information provided is true and accurate
+✅ Electronic signature and photo authentication completed
+
+Registration ID: ${registrationId}
+
+⏰ Submission Date & Time: ${timestamp}
+
+═══════════════════════════════════════
+This registration was submitted through
+the Shelke Classes online registration
+system.
+═══════════════════════════════════════
+            `.trim();
+            
+            // Create mailto link
+            const adminEmail = 'shelketejas266.ts@gmail.com';
+            const subject = encodeURIComponent(`New Student Registration - ${data.studentName} - Shelke Classes`);
+            const body = encodeURIComponent(emailBody);
+            
+            // Open email client
+            const mailtoLink = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+            
+            // Show success message with download option
+            setTimeout(() => {
+                const downloadPhoto = confirm('✅ Email opened successfully!\n\n📸 Would you like to download the student photo now?\n\n(You can also download the signature after this)');
+                
+                if (downloadPhoto) {
+                    downloadImage(photoDataURL, `${data.studentName}_Photo.jpg`);
+                    
+                    setTimeout(() => {
+                        const downloadSig = confirm('✍️ Now download the signature?');
+                        if (downloadSig) {
+                            downloadImage(signatureDataURL, `${data.studentName}_Signature.png`);
+                        }
+                        
+                        showFinalInstructions(data.studentName);
+                    }, 500);
+                } else {
+                    showFinalInstructions(data.studentName);
+                }
+            }, 1000);
+        });
+        
+        function downloadImage(dataURL, filename) {
+            const link = document.createElement('a');
+            link.href = dataURL;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function showFinalInstructions(studentName) {
+            alert(`✅ Registration Complete!\n\n📧 Your email app should be open with the registration details.\n\n📎 Next Steps:\n1. Click "Send" in your email app\n2. Attach the downloaded photo and signature files to the email\n3. Send the email to complete registration\n\nThank you for registering with Shelke Classes!`);
+        }
+        
+        // Form validation for phone numbers
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+        phoneInputs.forEach(input => {
+            input.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            });
+        });
+        
+        // Form validation for pincode
+        const pincodeInput = document.querySelector('input[name="pincode"]');
+        pincodeInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>
